@@ -9,3 +9,13 @@
 #else
 	#error TitanPulse only supports Windows!
 #endif
+
+#ifdef TP_ENABLE_ASSERTS
+	#define TP_ASSERT(x, ...) { if(!(x)) { TP_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define TP_CORE_ASSERT(x, ...) { if(!(x)) { TP_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+	#define TP_ASSERT(x, ...)
+	#define TP_CORE_ASSERT(x, ...)
+#endif
+
+#define BIT(x) (1 << x)
