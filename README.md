@@ -1,2 +1,2 @@
-# TitanPulse-
+# TitanPulse
 TitanPulse game engine 
