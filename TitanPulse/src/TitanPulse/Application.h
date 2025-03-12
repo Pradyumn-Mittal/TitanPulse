@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Events.h"
-#include  "Window.h"
+
+#include "Window.h"
+#include "TitanPulse/LayerStack.h"
+#include "TitanPulse/Events/Events.h"
+#include "TitanPulse/Events/ApplicationEvent.h"
+
 
 namespace TitanPulse
 {
@@ -13,9 +17,17 @@ namespace TitanPulse
 		virtual ~Application();
 
 		void Run();
+
+		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* layer);
 	private:
+		bool OnWindowClose(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 
 	Application* CreateApplication();

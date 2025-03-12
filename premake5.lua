@@ -12,8 +12,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "TitanPulse/vendor/GLFW/include"
+IncludeDir["Glad"] = "TitanPulse/vendor/Glad/include"
+IncludeDir["Imgui"] = "TitanPulse/vendor/imgui/include"
 
 include "TitanPulse/vendor/GLFW"
+include "TitanPulse/vendor/Glad"
+include "TitanPulse/vendor/imgui"
 
 project "TitanPulse"
     location "TitanPulse"
@@ -34,11 +38,15 @@ project "TitanPulse"
     includedirs{
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.Imgui}"
     }
 
     links{
         "GLFW",
+        "Glad",
+        "Imgui",
         "opengl32.lib"
     
     }
@@ -50,7 +58,8 @@ project "TitanPulse"
 
         defines{
             "TP_PLATFORM_WINDOWS",
-            "TP_BUILD_DLL"
+            "TP_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         } 
 
         postbuildcommands {
@@ -59,14 +68,20 @@ project "TitanPulse"
 
     filter "configurations:Debug"
         defines "TP_DEBUG"
+        buildoptions "/MDd"
+        buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Release"
         defines "TP_RELEASE"
+        buildoptions "/MD"
+        buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
+        buildoptions "/MD"
+        buildoptions "/utf-8"
         symbols "On"
 
 project "Sandbox"
@@ -102,12 +117,18 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "TP_DEBUG"
+        buildoptions "/MDd"
+        buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Release"
         defines "TP_RELEASE"
+        buildoptions "/MD"
+        buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
+        buildoptions "/MD"
+        buildoptions "/utf-8"
         symbols "On"
