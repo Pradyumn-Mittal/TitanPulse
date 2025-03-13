@@ -10,6 +10,11 @@
 	#error TitanPulse only supports Windows!
 #endif
 
+#ifdef TP_DEBUG
+	#define TP_ENABLE_ASSERTS
+#endif // !TP_DEBUG
+
+
 #ifdef TP_ENABLE_ASSERTS
 	#define TP_ASSERT(x, ...) { if(!(x)) { TP_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define TP_CORE_ASSERT(x, ...) { if(!(x)) { TP_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
@@ -19,3 +24,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define TP_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

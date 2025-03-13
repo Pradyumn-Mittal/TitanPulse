@@ -1,5 +1,6 @@
 workspace "TitanPulse"
     architecture "x64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -13,16 +14,20 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "TitanPulse/vendor/GLFW/include"
 IncludeDir["Glad"] = "TitanPulse/vendor/Glad/include"
-IncludeDir["Imgui"] = "TitanPulse/vendor/imgui/include"
+IncludeDir["Imgui"] = "TitanPulse/vendor/imgui"
 
-include "TitanPulse/vendor/GLFW"
-include "TitanPulse/vendor/Glad"
-include "TitanPulse/vendor/imgui"
+group "Dependencies"
+    include "TitanPulse/vendor/GLFW"
+    include "TitanPulse/vendor/Glad"
+    include "TitanPulse/vendor/imgui"
+group ""
 
 project "TitanPulse"
     location "TitanPulse"
     kind "SharedLib"
     language "C++"
+    staticruntime "Off"
+
 
     targetdir ("bin/".. outputdir .."/%{prj.name}")
     objdir ("bin/int/".. outputdir .."/%{prj.name}")
@@ -53,7 +58,6 @@ project "TitanPulse"
 
     filter "system:windows"
         cppdialect "C++23"
-        staticruntime "On"
         systemversion "latest"
 
         defines{
@@ -68,19 +72,19 @@ project "TitanPulse"
 
     filter "configurations:Debug"
         defines "TP_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Release"
         defines "TP_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         buildoptions "/utf-8"
         symbols "On"
 
@@ -88,6 +92,8 @@ project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "Off"
+
 
     targetdir ("bin/".. outputdir .."/%{prj.name}")
     objdir ("bin/int/".. outputdir .."/%{prj.name}")
@@ -108,7 +114,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++23"
-        staticruntime "On"
         systemversion "latest"
 
         defines{
@@ -117,18 +122,18 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "TP_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Release"
         defines "TP_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         buildoptions "/utf-8"
         symbols "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         buildoptions "/utf-8"
         symbols "On"

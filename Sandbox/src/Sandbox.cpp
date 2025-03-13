@@ -1,33 +1,34 @@
 #include <TitanPulse.h>
 
-class ExampleLayer : public TitanPulse::Layer 
+class ExampleLayer : public TitanPulse::Layer
 {
 public:
-	ExampleLayer()
-		: Layer("Example")
-	{
-	}
+    ExampleLayer()
+        : Layer("Example")
+    {
+    }
 
-	void OnUpdate() override
-	{
-		TP_INFO("ExampleLayer::Update");
-	}
+    void OnUpdate() override
+    {
+        TP_INFO("ExampleLayer::Update");
+    }
 
-	void OnEvent(TitanPulse::Event& event) override
-	{
-		TP_TRACE("{0}", event.ToString());
-	}
+    void OnEvent(TitanPulse::Event& event) override
+    {
+        TP_TRACE("{0}", event.ToString());
+    }
 };
 
 class Sandbox : public TitanPulse::Application {
 public:
-	Sandbox() {
-		PushLayer(new ExampleLayer());
-	}
-	~Sandbox() {
-	}
+    Sandbox() {
+        PushLayer(new ExampleLayer());
+        PushLayer(new TitanPulse::ImGuiLayer());
+    }
+    ~Sandbox() {
+    }
 };
 
 TitanPulse::Application* TitanPulse::CreateApplication() {
-	return new Sandbox();
+    return new Sandbox();
 }

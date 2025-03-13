@@ -1,20 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGl">
+      <UniqueIdentifier>{3E7D2C1D-AA08-9AE1-B319-1DD61F24F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TitanPulse">
       <UniqueIdentifier>{0E73568F-FA2A-98DC-6332-71384F0933CD}</UniqueIdentifier>
     </Filter>
     <Filter Include="TitanPulse\Events">
       <UniqueIdentifier>{3263467C-9E79-4412-E7F0-CF335346159A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TitanPulse\Platform">
-      <UniqueIdentifier>{22FF89C3-8E60-67D1-17CE-AD83832E9E90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TitanPulse\Platform\Windows">
-      <UniqueIdentifier>{5CABAD2F-C8B8-DB15-519F-D700BDABA7CC}</UniqueIdentifier>
+    <Filter Include="TitanPulse\ImGui">
+      <UniqueIdentifier>{B87AD849-A473-F79B-CDA5-DC20B9FDD6A7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGl\imgui_impl_opengl3.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\TItanPulse.h" />
     <ClInclude Include="src\TitanPulse\Application.h">
       <Filter>TitanPulse</Filter>
@@ -37,6 +49,9 @@
     <ClInclude Include="src\TitanPulse\Events\MouseEvent.h">
       <Filter>TitanPulse\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\TitanPulse\ImGui\ImGuiLayer.h">
+      <Filter>TitanPulse\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\TitanPulse\Layer.h">
       <Filter>TitanPulse</Filter>
     </ClInclude>
@@ -46,17 +61,23 @@
     <ClInclude Include="src\TitanPulse\Log.h">
       <Filter>TitanPulse</Filter>
     </ClInclude>
-    <ClInclude Include="src\TitanPulse\Platform\Windows\WindowsWindow.h">
-      <Filter>TitanPulse\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\TitanPulse\Window.h">
       <Filter>TitanPulse</Filter>
     </ClInclude>
     <ClInclude Include="src\tppch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGl\imgui_impl_opengl3.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\TitanPulse\Application.cpp">
       <Filter>TitanPulse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TitanPulse\ImGui\ImGuiLayer.cpp">
+      <Filter>TitanPulse\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\TitanPulse\Layer.cpp">
       <Filter>TitanPulse</Filter>
@@ -66,9 +87,6 @@
     </ClCompile>
     <ClCompile Include="src\TitanPulse\Log.cpp">
       <Filter>TitanPulse</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TitanPulse\Platform\Windows\WindowsWindow.cpp">
-      <Filter>TitanPulse\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\tppch.cpp" />
   </ItemGroup>
