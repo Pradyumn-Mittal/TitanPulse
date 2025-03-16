@@ -4,7 +4,8 @@
 #include "TitanPulse/Log.h"
 
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
+
+#include "Input.h"
 
 namespace TitanPulse
 {
@@ -18,20 +19,15 @@ namespace TitanPulse
 		TP_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		// Initialize GLFW
-		if (!glfwInit())
-		{
-			TP_CORE_ERROR("Failed to initialize GLFW!");
-			return;
-		}
-
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
 	{
-		glfwTerminate();
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -69,11 +65,16 @@ namespace TitanPulse
 	{
 
 		while (m_Running) {
-			glClearColor(1, 0, 1, 1);
+			glClearColor(0.5f, 0.0f, 1.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

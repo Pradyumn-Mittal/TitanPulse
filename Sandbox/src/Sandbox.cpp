@@ -1,5 +1,7 @@
 #include <TitanPulse.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public TitanPulse::Layer
 {
 public:
@@ -10,12 +12,24 @@ public:
 
     void OnUpdate() override
     {
-        TP_INFO("ExampleLayer::Update");
+		if (TitanPulse::Input::IsKeyPressed(TP_KEY_TAB))
+			TP_TRACE("Tab key is pressed");
     }
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello world!");
+		ImGui::End();
+	}
 
     void OnEvent(TitanPulse::Event& event) override
     {
-        TP_TRACE("{0}", event.ToString());
+		if (event.GetEventType() == TitanPulse::EventType::KeyPressed)
+		{
+			TitanPulse::KeyPressedEvent& e = (TitanPulse::KeyPressedEvent&)event;
+			TP_TRACE("Key pressed: {0} ({1})", e.GetKeyCode(), (char)e.GetKeyCode());
+		}
     }
 };
 
@@ -23,7 +37,6 @@ class Sandbox : public TitanPulse::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
-        PushLayer(new TitanPulse::ImGuiLayer());
     }
     ~Sandbox() {
     }

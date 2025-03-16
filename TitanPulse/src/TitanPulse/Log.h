@@ -6,7 +6,7 @@
 
 namespace TitanPulse
 {
-	class TITAN_PULSE_API Log
+	class  Log
 	{
 	public:
 		static void Init();

@@ -7,10 +7,11 @@
 #include "TitanPulse/Events/Events.h"
 #include "TitanPulse/Events/ApplicationEvent.h"
 
+#include "TitanPulse/ImGui/ImGuiLayer.h"
 
 namespace TitanPulse
 {
-	class TITAN_PULSE_API Application
+	class  Application
 	{
 	public:
 		Application();
@@ -29,6 +30,7 @@ namespace TitanPulse
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

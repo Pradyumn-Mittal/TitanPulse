@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "TitanPulse/vendor/GLFW/include"
 IncludeDir["Glad"] = "TitanPulse/vendor/Glad/include"
 IncludeDir["Imgui"] = "TitanPulse/vendor/imgui"
+IncludeDir["glm"] = "TitanPulse/vendor/glm"
 
 group "Dependencies"
     include "TitanPulse/vendor/GLFW"
@@ -24,9 +25,10 @@ group ""
 
 project "TitanPulse"
     location "TitanPulse"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    staticruntime "Off"
+    cppdialect "C++23"
+    staticruntime "On"
 
 
     targetdir ("bin/".. outputdir .."/%{prj.name}")
@@ -37,7 +39,13 @@ project "TitanPulse"
 
     files {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        "%{prj.name}/vendor/glm/glm/**.inl"
+    }
+
+    defines{
+        "_CRT_SECURE_NO_WARNINGS"
     }
 
     includedirs{
@@ -45,7 +53,8 @@ project "TitanPulse"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.Imgui}"
+        "%{IncludeDir.Imgui}",
+        "%{IncludeDir.glm}"
     }
 
     links{
@@ -57,7 +66,6 @@ project "TitanPulse"
     }
 
     filter "system:windows"
-        cppdialect "C++23"
         systemversion "latest"
 
         defines{
@@ -80,20 +88,20 @@ project "TitanPulse"
         defines "TP_RELEASE"
         runtime "Release"
         buildoptions "/utf-8"
-        symbols "On"
+        optimize "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
         runtime "Release"
         buildoptions "/utf-8"
-        symbols "On"
+        optimize "On"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
-    staticruntime "Off"
-
+    cppdialect "C++23"
+    staticruntime "On"
 
     targetdir ("bin/".. outputdir .."/%{prj.name}")
     objdir ("bin/int/".. outputdir .."/%{prj.name}")
@@ -105,7 +113,9 @@ project "Sandbox"
 
     includedirs{
         "TitanPulse/vendor/spdlog/include",
-        "TitanPulse/src"
+        "TitanPulse/src",
+        "TitanPulse/vendor",
+        "%{IncludeDir.glm}"
     }
 
     links {
@@ -113,7 +123,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++23"
         systemversion "latest"
 
         defines{
@@ -130,10 +139,10 @@ project "Sandbox"
         defines "TP_RELEASE"
         runtime "Release"
         buildoptions "/utf-8"
-        symbols "On"
+        optimize "On"
 
     filter "configurations:Dist"
         defines "TP_DIST"
         runtime "Release"
         buildoptions "/utf-8"
-        symbols "On"
+        optimize "On"

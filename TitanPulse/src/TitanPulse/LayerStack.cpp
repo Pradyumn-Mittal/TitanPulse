@@ -5,7 +5,6 @@ namespace TitanPulse
 {
 	LayerStack::LayerStack()
 	{
-		m_LayerInsert = m_Layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -20,7 +19,7 @@ namespace TitanPulse
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		TP_TRACE("Pushing layer: {0}", layer->GetName()); // Log layer push
-		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsert, layer);
 		m_LayerInsert++;
 	}
 

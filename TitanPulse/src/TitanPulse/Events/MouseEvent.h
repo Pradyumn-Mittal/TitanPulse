@@ -4,7 +4,7 @@
 
 namespace TitanPulse {
 
-	class TITAN_PULSE_API MouseMovedEvent : public Event
+	class  MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -28,7 +28,7 @@ namespace TitanPulse {
 		float m_MouseX, m_MouseY;
 	};
 
-	class TITAN_PULSE_API MouseScrolledEvent : public Event
+	class  MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -51,7 +51,7 @@ namespace TitanPulse {
 		float m_XOffset, m_YOffset;
 	};
 
-	class TITAN_PULSE_API MouseButtonEvent : public Event
+	class  MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -63,7 +63,7 @@ namespace TitanPulse {
 		int m_Button;
 	};
 
-	class TITAN_PULSE_API MouseButtonPressedEvent : public MouseButtonEvent
+	class  MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -78,7 +78,7 @@ namespace TitanPulse {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class TITAN_PULSE_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class  MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)
