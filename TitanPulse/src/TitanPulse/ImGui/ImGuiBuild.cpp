@@ -1,4 +1,4 @@
-#include "tppch.h"
+#include <tppch.h>
 
 #define IMGUI_IMPL_OPENGL_LOADER_CUSTOM
 #include "glad/glad.h"

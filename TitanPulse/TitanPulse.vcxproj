@@ -155,6 +155,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\TitanPulse\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\TItanPulse.h" />
@@ -172,6 +175,9 @@
     <ClInclude Include="src\TitanPulse\LayerStack.h" />
     <ClInclude Include="src\TitanPulse\Log.h" />
     <ClInclude Include="src\TitanPulse\MouseButtonCodes.h" />
+    <ClInclude Include="src\TitanPulse\Renderer\Buffer.h" />
+    <ClInclude Include="src\TitanPulse\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\TitanPulse\Renderer\Shader.h" />
     <ClInclude Include="src\TitanPulse\Window.h" />
     <ClInclude Include="src\tppch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -594,6 +600,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\TitanPulse\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\TitanPulse\Application.cpp" />
@@ -602,6 +611,8 @@
     <ClCompile Include="src\TitanPulse\Layer.cpp" />
     <ClCompile Include="src\TitanPulse\LayerStack.cpp" />
     <ClCompile Include="src\TitanPulse\Log.cpp" />
+    <ClCompile Include="src\TitanPulse\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\TitanPulse\Renderer\Shader.cpp" />
     <ClCompile Include="src\tppch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

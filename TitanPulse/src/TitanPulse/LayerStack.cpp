@@ -1,4 +1,4 @@
-#include "tppch.h"
+#include <tppch.h>
 #include "LayerStack.h"
 
 namespace TitanPulse

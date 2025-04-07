@@ -1,4 +1,4 @@
-#include "tppch.h"
+#include <tppch.h>
 #include "WindowsInput.h"
 #include "TitanPulse/Application.h"
 #include "GLFW/glfw3.h"

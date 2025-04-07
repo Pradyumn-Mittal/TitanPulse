@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tppch.h"
+#include <tppch.h>
 #include "TitanPulse/Core.h"
 #include "Events/Events.h"
 

@@ -4,6 +4,8 @@
 
 #include "GLFW/glfw3.h"
 
+#include "TitanPulse/Renderer/GraphicsContext.h"
+
 namespace TitanPulse {
 	class WindowsWindow : public Window
 	{
@@ -27,6 +29,7 @@ namespace TitanPulse {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
